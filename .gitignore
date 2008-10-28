@@ -1,0 +1,3 @@
+debian/files
+debian/initramfs-tools.debhelper.log
+debian/initramfs-tools
