@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 
 echo "Loading, please wait..."
 
@@ -180,8 +180,8 @@ run_scripts /scripts/init-bottom
 [ "$quiet" != "y" ] && log_end_msg
 
 # Move virtual filesystems over to the real filesystem
-mount -n -o move /sys ${rootmnt}/sys
-mount -n -o move /proc ${rootmnt}/proc
+mount -n -o move -t sysfs /sys ${rootmnt}/sys
+mount -n -o move -t proc /proc ${rootmnt}/proc
 
 # Check init bootarg
 if [ -n "${init}" ] && [ ! -x "${rootmnt}${init}" ]; then
