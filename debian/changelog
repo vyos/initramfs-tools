@@ -1,3 +1,19 @@
+initramfs-tools (0.92j+vyatta+2) unstable; urgency=low
+
+  [ rbalocca ]
+  * Ignore derived files
+  * Remove startup warnings
+  * Fix for bug http://bugzilla.vyatta.com/show_bug.cgi?id=3857
+
+  [ An-Cheng Huang ]
+  * add support for development build
+  * update maintainer information
+  * "files" file should be removed before package build
+  
+  (Tag the right branch)
+
+ -- An-Cheng Huang <ancheng@vyatta.com>  Wed, 07 Jan 2009 19:01:39 -0800
+
 initramfs-tools (0.92j) unstable; urgency=high
 
   [ Gerfried Fuchs ]
