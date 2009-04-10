@@ -1,3 +1,82 @@
+initramfs-tools (0.92o) unstable; urgency=high
+
+  * configure_networking: Raise ipconfig timeout to 180 seconds.
+    Thanks Norbert Tretkowski <norbert@tretkowski.de> for report.
+    (closes: #511085)
+
+ -- maximilian attems <maks@debian.org>  Wed, 07 Jan 2009 15:16:14 +0100
+
+initramfs-tools (0.92n) unstable; urgency=high
+
+  [ Eugene Paskevich ]
+  * hook-functions: Fix MODULES=dep for lvm LABEL fstab notation.
+    (closes: #508906)
+
+  [ maximilian attems ]
+  * all_generic_ide: Also parse boolean bootoption. (closes: #507805)
+  * initramfs-tools.8: Document where to look up NFSOPTS. (closes: #502927)
+  * update-initramfs.8: List -d and mark the non-optional as such.
+
+  [ S. Sakar ]
+  * hook-functions: MODULES=dep fix encrypted loop device.
+    (closes: #499666)
+
+ -- maximilian attems <maks@debian.org>  Fri, 19 Dec 2008 14:03:13 +0100
+
+initramfs-tools (0.92m) unstable; urgency=medium
+
+  [ Colin Watson ]
+  * scripts/functions: Call ipconfig with a one-minute timeout.
+  * Make debug option write to /dev/.initramfs/initramfs.debug,
+    so that it can be retrieved after boot.
+
+  [ Julien Danjou ]
+  * scripts/functions: Wrong check for udevadm in functions. (closes: #507059)
+
+  [ maximilian attems ]
+  * scripts/functions: fix not set break variable. (closes: #502058)
+  * MODULES=dep fix for ida devices.
+  * hook-functions: alphebetize net drivers, fix typhoon typo.
+  * Add atl1e, cxgb, ixgb, ixgbe, mlx4_core, netxen_nic, sfc, tehuti to
+    net module list. (closes: #503216)
+  * nuke 0.92k goof clean up.
+  * postrm: set -e flag.
+  * Revert "framebuffer: Let udev create fb devices."
+  * scripts/functions: comment fix path to moved linux-2.6
+    Documentation.
+  * init: Don't leak initramfs-tools exported variables.
+    (closes: #426465, #505440)
+
+  [ dann frazier ]
+  * Fix MODULES=dep for cciss devices. (closes: #507619)
+
+  [ Michal Pokrywka ]
+  * framebuffer: Add support for uvesafb. (closes: #502056)
+
+  [ Andres Salomon ]
+  * fix redboot partition support. (closes: #504555)
+
+ -- maximilian attems <maks@debian.org>  Tue, 16 Dec 2008 16:01:44 +0100
+
+initramfs-tools (0.92l) unstable; urgency=high
+
+  * Revert "initramfs-tools: Add support for linux-2.6 make deb-pkg
+    target" (closes: #499270) thanks Vincent Danjean <vdanjean@debian.org>.
+
+ -- maximilian attems <maks@debian.org>  Wed, 17 Sep 2008 15:38:05 +0200
+
+initramfs-tools (0.92k) unstable; urgency=high
+
+  [ Martin Michlmayr ]
+  * update initramfs.conf according to latest Debian Installer.
+  * update-initramfs: don't run glantank-update-kernel.
+
+  [ maximilian attems ]
+  * auto_add_modules: add dasd_diag_mod to dasd section.
+  * initramfs-tools: Add support for linux-2.6 make deb-pkg target.
+
+ -- maximilian attems <maks@debian.org>  Tue, 16 Sep 2008 14:55:04 +0200
+
 initramfs-tools (0.92j) unstable; urgency=high
 
   [ Gerfried Fuchs ]
