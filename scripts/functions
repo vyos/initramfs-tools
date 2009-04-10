@@ -55,7 +55,7 @@ panic()
 
 maybe_break()
 {
-	if [ "${break}" = "$1" ]; then
+	if [ "${break:-}" = "$1" ]; then
 		panic "Spawning shell within the initramfs"
 	fi
 }
@@ -238,7 +238,7 @@ parse_numeric() {
 	/*)
 		return
 		;;
-	*:*)
+	[0-9]*:[0-9]*)
 		minor=${1#*:}
 		major=${1%:*}
 		;;
@@ -261,20 +261,21 @@ configure_networking()
 	# networking already configured thus bail out
 	[ -n "${DEVICE}" ] && [ -e /tmp/net-"${DEVICE}".conf ] && return 0
 
-	# support ip options see linux sources Documentation/nfsroot.txt
+	# support ip options see linux sources
+	# Documentation/filesystems/nfsroot.txt
 	case ${IPOPTS} in
 	none|off)
 		# Do nothing
 		;;
 	""|on|any)
 		# Bring up device
-		ipconfig ${DEVICE}
+		ipconfig -t 180 ${DEVICE}
 		;;
 	dhcp|bootp|rarp|both)
-		ipconfig -c ${IPOPTS} -d ${DEVICE}
+		ipconfig -t 180 -c ${IPOPTS} -d ${DEVICE}
 		;;
 	*)
-		ipconfig -d $IPOPTS
+		ipconfig -t 180 -d $IPOPTS
 
 		# grab device entry from ip option
 		NEW_DEVICE=${IPOPTS#*:*:*:*:*:*}
@@ -303,6 +304,6 @@ configure_networking()
 # Wait for queued kernel/udev events
 wait_for_udev()
 {
-	[ -x "$(command -v udevadm)" ] && return 0
+	[ -x "$(command -v udevadm)" ] || return 0
 	udevadm settle ${1:+--timeout=$1}
 }
