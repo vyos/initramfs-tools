@@ -1,3 +1,9 @@
+initramfs-tools (0.92o+vyatta+4) unstable; urgency=low
+
+  * UNRELEASED
+
+ -- An-Cheng Huang <ancheng@vyatta.com>  Thu, 22 Jul 2010 17:20:38 -0700
+
 initramfs-tools (0.92o+vyatta+3) unstable; urgency=low
 
   * UNRELEASED
