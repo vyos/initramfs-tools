@@ -344,7 +344,7 @@ auto_add_modules()
 	;;
 	net)
 		for x in 3c59x 8139cp 8139too 8390 atl1 atl1e b44 bmac \
-		bnx2 cxgb cxgb3 de2104x de4x5 defxx dl2k dmfe \
+		bnx2 bnx2x cxgb cxgb3 de2104x de4x5 defxx dl2k dmfe \
 		e100 e1000 e1000e ehea epic100 \
 		ep93xx_eth eql fealnx famachi forcedeth gelic_net \
 		hp100 igb ipg ixgb ixgbe mace mlx4_core mv643xx_eth myri10ge \
