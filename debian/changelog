@@ -1,3 +1,9 @@
+initramfs-tools (0.92o+vyatta+3+larkspur2) unstable; urgency=low
+
+  * Add bnx2x to network drivers
+
+ -- Stephen Hemminger <stephen.hemminger@vyatta.com>  Tue, 03 Aug 2010 10:39:45 -0700
+
 initramfs-tools (0.92o+vyatta+3+larkspur1) unstable; urgency=low
 
   * UNRELEASED
