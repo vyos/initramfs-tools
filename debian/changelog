@@ -1,3 +1,10 @@
+initramfs-tools (0.92o+vyatta+5) unstable; urgency=low
+
+  * Add bnx2x to network drivers
+  * Find firmware in /lib/firmware/<kernel-version>
+
+ -- Stephen Hemminger <stephen.hemminger@vyatta.com>  Thu, 26 Aug 2010 16:41:39 -0700
+
 initramfs-tools (0.92o+vyatta+4) unstable; urgency=low
 
   * UNRELEASED
