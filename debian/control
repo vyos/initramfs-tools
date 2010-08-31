@@ -2,7 +2,7 @@ Source: initramfs-tools
 Section: utils
 Priority: optional
 Maintainer: Vyatta Package Maintainers <maintainers@vyatta.com>
-Build-Depends: debhelper (>= 4.1.0), cdbs
+Build-Depends: debhelper (>= 5), cdbs
 Standards-Version: 3.8.0
 Vcs-Browser: http://git.debian.org/?p=kernel/initramfs-tools.git
 Vcs-Git: git://git.debian.org/git/kernel/initramfs-tools.git
