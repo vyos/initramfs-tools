@@ -1,4 +1,4 @@
-.TH INITRAMFS-TOOLS 8  "2008/12/18" "" "mkinitramfs script overview"
+.TH INITRAMFS-TOOLS 8  "2010/06/22" "Linux" "mkinitramfs script overview"
 
 .SH NAME
 initramfs-tools \- an introduction to writing scripts for mkinitramfs
@@ -9,50 +9,37 @@ will be used during different phases of execution. Each of these will be
 discussed separately below with the help of an imaginary tool which performs a
 frobnication of a lvm partition prior to mounting the root partition.
 
-Valid boot and hook scripts names consist solely of alphabetics, numerics
-and underscores. Other scripts are discarded.
+.SH Kernel Command Line
+The root filesystem used by the kernel is specified by the boot loader as
+always. The traditional \fBroot=/dev/sda1\fR style device specification is
+allowed. If a label is used, as in \fBroot=LABEL=rootPart\fR the initrd will
+search all available devices for a filesystem with the appropriate label, and
+mount that device as the root filesystem.  \fBroot=UUID=uuidnumber\fR will
+mount the partition with that UUID as the root filesystem.
 
-.SS Hook scripts
-These are used when an initramfs image is created and not included in the
-image itself. They can however cause files to be included in the image.
-
-.SS Boot scripts
-These are included in the initramfs image and normally executed during
-kernel boot in the early user-space before the root partition has been
-mounted.
-
-.SH INIT SCRIPT
-The script which is executed first and is in charge of running all other
-scripts can be found in /usr/share/initramfs-tools/init. It takes a number of
-arguments which influence the boot procedure:
-
-.SS Boot options
-
-The init and root are usually passed by the boot loader for local boot.
-The other parameters are optional.
+.SS Standard
 
 .TP
-\fB\fI init
+\fB\fI init= "<path to real init>"
 the binary to hand over execution to on the root fs after the initramfs scripts are done.
 
 .TP
-\fB\fI root
+\fB\fI root= "<path to blockdevice>"
 the device node to mount as the root file system.
 The recommended usage is to specify the UUID as followed "root=UUID=xxx".
-As normal device names are not stable and may change depending on the
-boot order.
-
-.TP
-\fB\fI rootdelay
-set delay in seconds. Determines how long mountroot waits for root to appear.
-
-.TP
-\fB\fI rootflags
-set the file system mount option string.
 
 .TP
 \fB\fI rootfstype
 set the root file system type.
+
+.TP
+\fB\fI rootdelay
+set delay in seconds. Determines how long mountroot waits for root to appear.
+The default is 180 seconds.
+
+.TP
+\fB\fI rootflags
+set the file system mount option string.
 
 .TP
 \fB\fI nfsroot
@@ -64,12 +51,14 @@ Use root=/dev/nfs for NFS to kick to in. NFSOPTS can be looked up in
 .TP
 \fB\fI ip
 tells how to configure the ip address. Allows to specify an different
-NFS server than the DHCP server. See Documentation/nfsroot.txt in
-any recent Linux source for details. Optional paramater for NFS root.
+NFS server than the DHCP server. See Documentation/filesystems/nfsroot.txt
+in any recent Linux source for details. Optional parameter for NFS root.
 
 .TP
-\fB\fI cryptopts
-passes the args for cryptoroot. Set by the cryptsetup boot hooks.
+\fB\fI BOOTIF
+is a mac address in pxelinux format with leading "01-" and "-" as separations.
+pxelinux passes mac address of network card used to PXE boot on with this
+bootarg.
 
 .TP
 \fB\fI boot
@@ -103,6 +92,7 @@ mounts the rootfs read-write.
 disables load of specific modules.
 Use blacklist=module1,module2,module3 bootparameter.
 
+.SS Debug
 .TP
 \fB\fI panic
 sets an timeout on panic.
@@ -110,7 +100,7 @@ panic=<sec> is a documented security feature: it disables the debug shell.
 
 .TP
 \fB\fI debug
-generates lots of output. It writes a log to /tmp/initramfs.debug.
+generates lots of output. It writes a log to /dev/.initramfs/initramfs.debug.
 Instead when invoked with an arbitrary argument output is written to console.
 Use for example "debug=vc".
 
@@ -123,11 +113,30 @@ Beware that if both "panic" and "break" are present,
 initramfs will not spawn any shells but reboot instead.
 
 .TP
+\fB\fI netconsole
+loads netconsole linux modules with the chosen args.
+
+.TP
 \fB\fI all_generic_ide
 loads generic IDE/ATA chipset support on boot.
 
 
 .SH HOOK SCRIPTS
+
+Valid boot and hook scripts names consist solely of alphabetics, numerics,
+dashes and underscores. Other scripts are discarded.
+
+.SS Hook scripts
+These are used when an initramfs image is created and not included in the
+image itself. They can however cause files to be included in the image.
+Hook scripts are executed under errexit. Thus a hook script can abort the
+mkinitramfs build on possible errors (exitcode != 0).
+
+.SS Boot scripts
+These are included in the initramfs image and normally executed during
+kernel boot in the early user-space before the root partition has been
+mounted.
+
 
 Hooks can be found in two places: /usr/share/initramfs-tools/hooks and
 /etc/initramfs-tools/hooks. They are executed during generation of the
@@ -225,6 +234,36 @@ and copy them to the initramfs. This means that most executables, unless
 compiled with klibc, will automatically include glibc in the image which will
 increase its size by several hundred kilobytes.
 
+.SS Exported variables
+mkinitramfs sets several variables for the hook scripts environment.
+
+.TP
+\fB\fI MODULESDIR
+corresponds to the linux-2.6 modules dir.
+.TP
+\fB\fI version
+is the $(uname \-r) linux-2.6 version against mkinitramfs is run.
+.TP
+\fB\fI CONFDIR
+is the path of the used initramfs-tools configurations.
+.TP
+\fB\fI DESTDIR
+is the root path of the newly build initramfs.
+.TP
+\fB\fI DPKG_ARCH
+allows arch specific hook additions.
+.TP
+\fB\fI verbose
+corresponds to the verbosity of the update-initramfs run.
+.TP
+\fB\fI KEYMAP
+sets if a keymap needs to be added to initramfs.
+.TP
+\fB\fI MODULES
+specifies which kind of modules should land on initramfs.
+This setting shouldn't be overridden by hook script, but can guide them
+on how much they need to include on initramfs.
+
 
 .SH BOOT SCRIPTS
 
@@ -260,7 +299,9 @@ esac
 Where PREREQ is modified to list other scripts in the same subdirectory if necessary.
 
 .SS Help functions
-A number of functions (mostly dealing with output) are provided to boot scripts:
+A number of functions (mostly dealing with output) are provided to boot scripts in
+.I /scripts/functions
+:
 
 .TP
 \fB\fI
@@ -434,6 +475,7 @@ prereqs)
 	;;
 esac
 
+\fR. /scripts/functions
 # Begin real processing below this line
 if [ ! \-x "/sbin/frobnicate" ]; then
 	panic "Frobnication executable not found"
@@ -450,6 +492,45 @@ log_end_msg
 exit 0
 .fi
 .RE
+
+.SS Exported variables
+init sets several variables for the boot scripts environment.
+
+.TP
+\fB\fI ROOT
+corresponds to the root boot option.
+Advanced boot scripts like cryptsetup or live-initramfs need to play tricks.
+Otherwise keep it alone.
+.TP
+\fB\fI ROOTDELAY, ROOTFLAGS, ROOTFSTYPE, IP
+corresponds to the rootdelay, rootflags, rootfstype or ip boot option.
+.TP
+\fB\fI DPKG_ARCH
+allows arch specific boot actions.
+.TP
+\fB\fI blacklist, panic, quiet, resume, noresume, resume_offset
+set according relevant boot option.
+.TP
+\fB\fI break
+Useful for manual intervention during setup and coding an boot script.
+.TP
+\fB\fI REASON
+Argument passed to the \fIpanic\fP helper function.  Use to find out why
+you landed in the initramfs shell.
+.TP
+\fB\fI init
+passes the path to init(8) usually /sbin/init.
+.TP
+\fB\fI readonly
+is the default for mounting the root corresponds to the ro bootarg.
+Overridden by rw bootarg.
+.TP
+\fB\fI rootmnt
+is the path where root gets mounted usually /root.
+.TP
+\fB\fI debug
+indicates that a debug log is captured for further investigation.
+
 
 .SH DEBUG
 It is easy to check the generated initramfs for its content. One may need

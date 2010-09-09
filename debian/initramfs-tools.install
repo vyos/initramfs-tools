@@ -1,3 +1,4 @@
+lsinitramfs		usr/bin
 mkinitramfs		usr/sbin
 mkinitramfs-kpkg	usr/sbin
 init			usr/share/initramfs-tools
@@ -10,3 +11,5 @@ conf/modules		usr/share/initramfs-tools
 update-initramfs	usr/sbin
 debian/script		usr/share/bug/initramfs-tools
 debian/lintian/initramfs-tools	usr/share/lintian/overrides
+kernel			etc
+bash_completion.d	etc

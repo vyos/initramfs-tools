@@ -2,9 +2,17 @@
 
 exec >&3
 
+echo "-- initramfs sizes"
+ls -lh /boot/initrd.img-2.6.*
+
 echo "-- /proc/cmdline"
 cat /proc/cmdline
 echo
+
+if [ -r  /etc/initramfs-tools/conf.d/resume ]; then
+	echo "-- resume"
+	cat  /etc/initramfs-tools/conf.d/resume
+fi
 
 echo "-- /proc/filesystems"
 grep -v nodev /proc/filesystems
@@ -26,9 +34,21 @@ if [ -r /etc/initramfs-tools/initramfs.conf ]; then
 	echo
 fi
 
+if [ -r /etc/initramfs-tools/update-initramfs.conf ]; then
+	echo "-- /etc/initramfs-tools/update-initramfs.conf"
+	sed 's/#.*$//;/^[[:space:]]*$/d' /etc/initramfs-tools/update-initramfs.conf
+	echo
+fi
+
 if [ -r /etc/crypttab ]; then
 	echo "-- /etc/crypttab"
 	cat /etc/crypttab
+	echo
+fi
+
+if [ -r /proc/mdstat ]; then
+	echo "-- /proc/mdstat"
+	cat /proc/mdstat
 	echo
 fi
 
@@ -37,3 +57,7 @@ if grep -q "MODULES=dep" /etc/initramfs-tools/initramfs.conf ; then
 	ls /sys/block
 	echo
 fi
+
+echo "-- mkinitramfs hooks"
+ls /usr/share/initramfs-tools/hooks /etc/initramfs-tools/hooks/
+echo
