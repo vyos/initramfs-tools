@@ -1,10 +1,12 @@
 #!/usr/bin/make -f
 
-DEB_DH_GENCONTROL_ARGS_ALL = $(shell if [ -f "../.VYATTA_DEV_BUILD" ]; then \
-                                       echo "-- -v999.dev"; fi)
-
-pre-build::
-	rm -f debian/files
-
 %:
 	dh $@
+
+override_dh_gencontrol:
+	if [ -f "../.VYATTA_DEV_BUILD" ]; then \
+		dh_gencontrol -- -v999.dev; \
+	else \
+		dh_gencontrol; \
+	fi
+
