@@ -1,3 +1,38 @@
+initramfs-tools (0.98.2+vyatta+1) unstable; urgency=low
+
+  [ rbalocca ]
+  * initramfs-tools-0.92j from mirrrors.kernel.org
+  * Ignore derived files
+  * Remove startup warnings
+  * Fix for bug http://bugzilla.vyatta.com/show_bug.cgi?id=3857
+
+  [ An-Cheng Huang ]
+  * add support for development build
+  * update maintainer information
+  * "files" file should be removed before package build
+  * 0.92j+vyatta+2
+  * merge 0.92o from git://git.debian.org/git/kernel/initramfs-tools.git
+  * 0.92o+vyatta+1
+  * 0.92o+vyatta+2
+  * 0.92o+vyatta+3
+  * 0.92o+vyatta+4
+
+  [ Stephen Hemminger ]
+  * Add bnx2x to network drivers
+  * Find firmware in /lib/firmware/<kernel-version>
+  * 0.92o+vyatta+5
+
+  [ An-Cheng Huang ]
+  * fix squeeze build
+  * 0.92o+vyatta+6
+  * 0.92o+vyatta+7
+  * fix for squeeze dpkg
+  * 0.92o+vyatta+8
+  * remove files that no longer exist
+  * use new dh method for development build
+
+ -- An-Cheng Huang <ancheng@vyatta.com>  Thu, 09 Sep 2010 18:13:22 -0700
+
 initramfs-tools (0.98.2) unstable; urgency=high
 
   [ Eckhart Wörner ]
