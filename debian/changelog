@@ -1,3 +1,539 @@
+initramfs-tools (0.98.2) unstable; urgency=high
+
+  [ Eckhart Wörner ]
+  * [97f20c5] initramfs-tools: Add hid-cherry and hid-logitech to
+    initramfs (Closes: #595827)
+
+ -- maximilian attems <maks@debian.org>  Tue, 07 Sep 2010 12:54:01 +0200
+
+initramfs-tools (0.98.1) unstable; urgency=high
+
+  [ Vagrant Cascadian ]
+  * [85fbb23] configure_networking(): Look for presence of
+    /tmp/net-*.conf files to not recall ipconfig. (Closes: #584583)
+
+ -- maximilian attems <maks@debian.org>  Wed, 25 Aug 2010 22:13:18 +0200
+
+initramfs-tools (0.98) unstable; urgency=low
+
+  [ Michael Prokop ]
+  * [7faeb32] fix typos in manpage, scripts/functions and
+    conf/initramfs.conf - thanks lintian
+  * [f1360c9] debian/NEWS: drop asterisk chars to make lintian happy
+  * [c4a1981] install doc-base file for doc-base-registration
+  * [f813bd9] add debian/source/format with "3.0 (native)" to make
+    lintian happy
+  * [38ee1a0] maintainer-notes: document "git remote prune origin" -
+    thanks to maximilian attems <maks@debian.org>
+  * [2390db8] maintainer-notes: use git config instead of environment
+    variables - thanks to Gerfried Fuchs <rhonda@deb.at>
+  * [c85bb1f] some minor rewording of sentences about development
+    mailinglists
+  * [7af6ef4] mkinitramfs: do not execute compress command under quotes
+    (Closes: #588517)
+  * [b65a486] update-initramfs: stop buildprocess if any script is
+    failing
+  * [e7daaf7] init: provide validate_init() wrapper to support absolute
+    symlinks. (Closes: #590744)
+  * [a0c3140] init: provide fastforward path for the common case when
+    validating init binary.
+  * [b343994] Bump Standards-Version to 3.9.1.
+
+  [ maximilian attems ]
+  * [837f261] mkinitramfs: set nounset and errexit
+  * [be71015] reportbug: list the mkinitramfs hook scripts of reporting
+    box
+  * [295bca7] initramfs-tools.8: Enhance documentation of boot option
+  * [c327689] update-initramfs: run_bootloader() return after zipl and
+    flash-kernel
+  * [089a903] mkinitramfs: set COMPRESS=gzip to be more consistent. -
+    thanks to Colin Watson <cjwatson@ubuntu.com>
+  * [210c83c] control: conform to latest policy without changes
+  * [9613412] mkinitramfs: Provide error code of failed mkinitramfs
+    creation
+  * [51a8d5f] revert mkinitramfs errexit and nounset
+  * [6bcb867] Maintainer notes document dev mailinglists
+  * [7c6221d] maintainer notes: underline that mail to one of the 2
+    lists is good
+  * [762ae2a] update-initramfs: revert nounset (Closes: #588915)
+  * [a4e1a9e] initramfs-tools: only allow hook scripts to errexit on
+    mkinitramfs
+  * [6f0b646] update-initramfs: run_bootloader() invoke Initramfs hooks
+
+  [ Stephen Powell ]
+  * [09d251a] postinst hook: respect INITRD variable
+  * [ff6116f] Redirect STDOUT to STDERR for post{inst,rm} hooks
+
+ -- Michael Prokop <mika@debian.org>  Sat, 07 Aug 2010 09:41:39 -0400
+
+initramfs-tools (0.97.2) unstable; urgency=high
+
+  * [ce732c3] initramfs-tools: output name of script that errexits.
+    (Closes: 586554)
+
+ -- maximilian attems <maks@debian.org>  Tue, 06 Jul 2010 12:58:37 +0200
+
+initramfs-tools (0.97.1) unstable; urgency=high
+
+  * [90d99e4] mkinitramfs: Fix initramfs generation without COMPRESS set.
+    (Closes: 587608) - thanks Valentin QUEQUET <valentin.quequet@orange.fr>
+
+ -- maximilian attems <maks@debian.org>  Mon, 05 Jul 2010 21:50:47 +0200
+
+initramfs-tools (0.97) unstable; urgency=low
+
+  [ Martin Michlmayr ]
+  * [e65ee48] Produce an error when root cannot be determined with
+    MODULES=dep
+  * [bb66fc2] hook-functions/init/scripts/local: add support for ubifs.
+    (Closes: #582858) - thanks to Martin Michlmayr <tbm@cyrius.com>
+
+  [ Ferenc Wagner ]
+  * [1d66ae1] scripts/nfs: cleanup retry logic
+
+  [ Colin Watson ]
+  * [3054e3e] initramfs-tools: work around 'find -printf %Y' bug
+
+  [ maximilian attems ]
+  * [a8a5ce4] script: Add update-initramfs.conf to bug report
+  * [cc6077a] update-initramfs: Fix another unbound variable (Closes:
+    #583695)
+  * [b1f74e6] get_fstype: reference blkid in comment - thanks to
+    Christoph Anton Mitterer <calestyo@scientia.net>
+  * [eb93a7e] pre_mountroot(): reduce timeout to 30 seconds
+  * [38563fe] scripts/functions: On panic change to tty1 if chvt around
+    - thanks to Colin Watson <cjwatson@ubuntu.com>
+  * [2031379] mkinitramfs: No point in hardcoding busybox path
+  * [68c87cd] mkinitramfs: check syntax of boot and hook scripts
+  * [ae02e4b] scripts/functions: beautify a bit reduce_satisfied()
+  * [22d996c] maintainer doc: use git commands without the dash
+  * [6147641] nfsmount: more small cleanups
+  * [e967b03] mkinitramfs, lsinitramfs: Better error message for
+    non-GNU getopt
+  * Add lsinitramfs (to list content of an initramfs image) ([a39db63]
+    [969f8fd] [fafede5] [2f3eb88])
+
+  [ Michael Prokop ]
+  * [2a8c990] hook-functions/mkinitramfs/update-initramfs: consequently
+    output error messages to stderr
+  * [04b8619] init: display warning message if devtmpfs could not be
+    mounted. - thanks to Ferenc Wagner <wferi@niif.hu>
+  * [60afd2a] code cleanup: drop trailing whitespaces.
+  * [ab28c77] code cleanup: consequently replace spaces in indentions
+    with tabs to unify coding stile
+  * [3a02c6f] code cleanup: consequently use "W:" for warnings.
+  * [b1fff5e] add bash-completion for update-initramfs (Closes: #537139)
+    - thanks to Stéphane Jourdois <stephane@jourdois.fr>
+  * [5697c3b] hook-functions: replace awk calls with sed in
+    dep_add_modules() (Closes: #585991) - thanks to Thorsten Glaser
+    <tg@mirbsd.de>
+  * [7afab22] debian/script: append /proc/mdstat (iff present) to
+    bugreports
+  * [5b565be] scripts/functions: allow hooks to abort build (Closes:
+    #396388)
+  * [528ba78] hook-functions: do not install ubi module by default via
+    auto_add_modules()
+  * [ecb8416] lsinitramfs: be more defensive against cmdline options
+  * [2ff4ba2] scripts/functions: fix usage of test for script execution
+  * [74f71c9] scripts/functions: fix another sh -n usage and fix typo
+  * [91f5947] hook-functions: install virtio_pci module if
+    /sys/bus/virtio is present and using modules=dep (Closes: #585992) -
+    thanks to Vincent Danjean <vdanjean@debian.org>
+  * [d25f610] slightly improve manpage lsinitramfs.8
+  * Provide maintainer-notes.html, being "Maintainer documentation for
+    initramfs-tools" ([7fc1ee5] [afafea4] [e506ee7] [d53a839] [6af23c2])
+
+ -- Michael Prokop <mika@debian.org>  Fri, 18 Jun 2010 12:28:04 +0200
+
+initramfs-tools (0.96.1) unstable; urgency=low
+
+  * hook-functions: Make sure copy_exec hook function does not
+    exit with a non-zero return value in non-verbose mode.
+    [Closes: #584520]
+  * docs/framebuffer: Document mode vs. mode_option option in
+    framebuffer example script. [Closes: #439846]
+  * hook-functions: make device name handling for /proc/mdstat
+    more flexible for MODULES=dep. [Closes: #549680, #514756]
+  * mkinitramfs / scripts/functions + initramfs-tools.8:
+    Support dashes inside scripts names. [Closes: #566056]
+  * hook-functions: handle ubifs in dep_add_modules() and return
+    since ubifs root is a char device, (see issue #582858).
+  * mkinitramfs: warn if TMPDIR is mounted noexec + fall back
+    to not cache run scripts then. [Closes: #576678]
+  * Add myself to uploaders.
+
+ -- Michael Prokop <mika@debian.org>  Tue, 08 Jun 2010 15:59:08 +0200
+
+initramfs-tools (0.95.1) unstable; urgency=low
+
+  [ Michael Prokop ]
+  * NMU as requested by maintainer.
+  * update-initramfs: fix unbound variables. [Closes: #583695]
+    Based on patch by Jonathan Nieder.
+
+  [ Jonathan Nieder ]
+  * update-initramfs: use $* instead of $@.
+
+ -- Michael Prokop <mika@debian.org>  Sun, 30 May 2010 22:09:15 +0200
+
+initramfs-tools (0.95) unstable; urgency=low
+
+  [ maximilian attems ]
+  * update TODO list.
+  * hook-functions: refactor copy_exec.
+  * mkinitramfs: check only once for existing ldd.
+  * mkinitramfs: Use eventual TMPDIR definition.
+  * mkinitramfs: guard against empty EXTRA_CONF.
+  * update-initramfs: Use nounset.
+  * mkinitramfs: Fix several unbound variables.
+  * mkinitramfs: On verbose indicate what we rm.
+  * bug script: include sizes of generated initramfs.
+  * debian/script: add generated resume param to bug.
+  * hook-functions: manual_add_modules simplify.
+  * hook-functions: copy_modules_dir() small simplifications.
+  * mkinitramfs.8: Fix wrong sourcing in boot script. (Closes: #545728)
+  * initramfs-tools.8: Mention /scritps/functions.
+  * initramfs-tools.8: cryptopts param gone.
+  * initramfs-tools.8: document BOOTIF variable.
+  * configure_networking(): work with empty DEVICE string.
+    (Closes: #566295, #575766)
+  * hook-functions: add hid-apple. (Closes: #577253)
+  * Revert "mkinitramfs: only copy modprobe conf files". (Closes: #577981)
+  * initramfs-tools: change license to GPL.
+  * hook-functions: re-add hid-microsoft. (Closes: #577253)
+  * initramfs-tools: drop outdated breaks.
+  * debian/copyright: add boilerplate to keep lintian happy.
+  * hook-functions: Fix copy_modules_dir().
+
+  [ Axel Beckert ]
+  * mkinitramfs.8: Add information about $TMPDIR environment variable.
+
+  [ bert schulze ]
+  * mkinitramfs: add LZO support.
+  * mkinitramfs: use -9 for lzop.
+
+  [ Vagrant Cascadian ]
+  * configure_networking: pxelinux BOOTIF fixes.
+  * init: add BOOTIF bootarg.
+
+  [ Michael Prokop ]
+  * Support booting from USB 3 xHCI-based controllers.
+
+  [ Claus Herwig ]
+  * mkinitramfs: fix MODULES=dep on mylex raid devices (DAC960).
+    (Closes: #579702)
+
+ -- maximilian attems <maks@debian.org>  Fri, 28 May 2010 17:22:56 -0700
+
+initramfs-tools (0.94.4) unstable; urgency=low
+
+  * init: fix hardcoded resume handling. (Closes: #576700)
+
+ -- maximilian attems <maks@debian.org>  Thu, 08 Apr 2010 06:02:28 +0200
+
+initramfs-tools (0.94.3) unstable; urgency=low
+
+  * debian/control: Add Breaks against experimental findutils.
+    (closes: #576677)
+
+ -- maximilian attems <maks@debian.org>  Thu, 08 Apr 2010 03:50:28 +0200
+
+initramfs-tools (0.94.2) unstable; urgency=low
+
+  * debian/control: amend Breaks for exp mdadm.
+
+ -- maximilian attems <maks@debian.org>  Tue, 06 Apr 2010 23:50:06 +0200
+
+initramfs-tools (0.94.1) unstable; urgency=low
+
+  * debian/control: Add a breaks mdadm.
+  * debian/control: Fix Breaks version comparison.
+
+ -- maximilian attems <maks@debian.org>  Tue, 06 Apr 2010 16:18:25 +0200
+
+initramfs-tools (0.94) unstable; urgency=low
+
+  * The "Litte Bang" release
+
+  [ maximilian attems ]
+  * Nuke kernelextras hooks.
+  * Create a klibc hook script.
+  * Redefinde MODULES=most to not carry any fb driver per default.
+  * Nuke framebuffer boot script.
+  * Revert "hook-functions: Add hid_* modules."
+  * Move busybox addition to a hook script.
+  * mkinitramfs fix comment.
+  * hook-functions: Fix mounted /sys check for openvz container.
+  * initramfs-tools.8: fix boot example script to execute.
+    scripts/functions. (closes: #545728)
+  * Fix out-of-date-standards-version.
+  * /etc/kernel hook script support for make deb-pkg generated linux-images
+    and kernel-package. (closes: #523735, #561289)
+  * update-initramfs: allow -t takeover on delete.
+  * /etc/kernel/postrm.d/i-t: use now takeover on delete.
+    (closes: #524534, #547365, #559619)
+  * Nuke useless unused dir.
+  * kernel hook scripts: Fix typo, add comments.
+  * hook-funcitions: Only warn about missing firmware if /proc/modules
+    exists. (closes: #560266, #575154)
+  * mkinitramfs: Be opportunistic when calling modprobe thus showing
+    errors. (closes: #554873)
+  * copy_exec: Check if ldd is around.
+  * scripts/local: Use blkid as backup fstype detection. (closes: #568527)
+  * mkinitramfs: only copy modprobe conf files. (closes: #506533)
+  * blacklist earlier at init-top stage.
+  * scripts/local: fix blkid invocation.
+  * init: export and unset BOOTIF.
+  * init: rexport resume to reallow it's hardcoded usage. (closes: #572858)
+  * update-initramfs: -d delete .bak file. (closes: #559535)
+  * control: bump standards version without changes.
+  * control: Clean up Uploaders field.
+  * switch from cdbs to debhelper 7.
+  * update-initramfs: Stop second guessing lilo usage. (closes: #574553)
+  * mkinitramfs: allow to build initramfs for unmodular linux images.
+    (closes: #415474, #433708)
+  * initramfs.conf.5: document UMASK variable for sensitive initramfs.
+    (closes: #536195)
+  * update-initramfs: only run elilo if configured. (closes: #534201)
+  * update-initramfs: fix previous elilo commit.
+  * MODULES=DEP Use driver/module syfs attribute. (closes: #567189)
+  * panic: quote variable.
+  * MODULES=DEP: Check rootfs on mkinitramfs. (closes: #519800)
+  * Use ata_generic driver on all_generic_ide bootarg
+  * scripts/functions: add get_fstype() from scripts/local. (closes: #487409)
+  * mkinitramfs.8: update date.
+  * Keep acpi modules in initramfs so that udev can load them early.
+  * mkinitramfs: no longer copy depmod.
+  * init: Silence "Loading essential drivers..." on quiet boot.
+  * hook-functions: Add btrfs to base modules.
+  * init: export BOOT for casper and friends.
+  * hooks/klibc: Keep gzip in initramfs.
+  * modernize docs to todays standards.
+  * examples: shipp old framebuffer boot script.
+  * initramfs.conf.5, update-initramfs.conf.5: Add FILES section.
+    (closes: #565386)
+  * mkinitramfs: be silent if no modules.map was generated in first place.
+  * debian/control: Add a breaks cryptsetup.
+
+  [ Tormod Volden ]
+  * blacklist boot hook write to /etc/modprobe.d/initramfs.conf.
+    (closes: #541864)
+
+  [ Michael Prokop ]
+  * Fix path to nfsroot.txt in documentation.
+  * hook-functions: Avoid firmware copy error. (closes: #570678)
+
+  [ Joey Hess ]
+  * scripts/local: avoid mount -t unknown. (closes: #567065)
+
+  [ Avi Rozen ]
+  * mkinitramfs: add all usb storage devices. (closes: #543568)
+
+  [ Ferenc Wagner ]
+  * initramfs-tools: make the panic argument available in the rescue
+    shell. (closes: #569033)
+
+  [ Maximilian Gass ]
+  * mkinitramfs: KEYMAP option fails to work due to missing keymap.
+    (closes: #565416)
+
+  [ Vagrant Cascadian ]
+  * configure_networking: support BOOTIF variable set by pxelinux.
+    (closes: #535008)
+
+  [ Ben Hutchings ]
+  * copy_modules_dir: Take a list of exclusions after the base directory.
+  * auto_add_modules: Copy all modules from net, excluding some
+    subdirectories.
+
+  [ Scott James Remnant ]
+  * init: Mount devtmpfs on /dev.
+  * mkinitramfs: Call depmod before packing the initramfs.
+    (closes: #465760, #562561)
+  * init: load the netconsole module with netconsole bootarg
+  * init: mount /dev/pts as well as /dev.
+
+  [ Ben Collins ]
+  * update-initramfs: Default to not keep .bak backups.
+
+  [ Piotr Lewandowski ]
+  * update-initramfs breaks if /etc/mtab is a symlink to /proc/mounts.
+    (closes: #525606)
+
+  [ Martin Michlmayr ]
+  * MODULES=dep fix boot with MMC. (closes: #548711)
+
+  [ Nikolaus Schulz ]
+  * hook-functions: let dep_add_modules() recurse into lvm slave devices.
+    (closes: 573761)
+
+  [ Anna Jonna Armannsdottir ]
+  * configure_networking: Try repeatedly ipconfig with increasing
+    timeout.
+
+  [ Colin Watson ]
+  * mkinitramfs: Filter out looping or broken symlinks from the
+    initramfs. (closes: #575157)
+  * mkinitramfs: set initramfs root to 755.
+
+  [ Bert Schulze ]
+  * initramfs-tools: support different compression tools in mkinitramfs.
+    (closes: #533903)
+  * mkinitramfs: -c compression support / commandline override.
+    (closes: #576429)
+
+ -- maximilian attems <maks@debian.org>  Mon, 05 Apr 2010 05:25:48 +0200
+
+initramfs-tools (0.93.4) unstable; urgency=medium
+
+  [ Aaron M. Ucko ]
+  * scripts/init-top/framebuffer: i915 needs intel-agp too. (closes: #533258)
+
+  [ maximilian attems ]
+  * preinst: Don't hardcode vol_id cmd.
+  * initramfs-tools.8: Convert hyphen to minus sign.
+  * control: bump versioned dep on debhelper.
+  * control: bump standards version without changes.
+  * hook-functions: Fix loading of entries without newline in
+    /etc/initramfs-tools/modules. (closes: #532745)
+  * MODULES=most: Add virtio_net to initramfs. (closes: #533894)
+
+ -- maximilian attems <maks@debian.org>  Wed, 29 Jul 2009 14:55:04 +0200
+
+initramfs-tools (0.93.3) unstable; urgency=low
+
+  [ maximilian attems ]
+  * cleanup LABEL handling code.
+  * update-initramfs: Use exit code of command -v too.
+  * hook-functions: Add i915 module for kms.
+  * update-initramfs: Pass version to flash-kernel. (closes: #523711)
+  * update-initramfs: Don't hardcode path for lilo or elilo. (closes: #524928)
+  * hook-functions: MODULES=dep error out if sysfs not mounted on /sys.
+    (closes: #524179)
+  * debian/control: No longer mention EVMS in long description.
+  * hook-functions: MODULES=most fix old typo s/smc911x/smc91x/.
+    (closes: #528094)
+  * mkinitramfs: Invoke dpkg --print-architecture. (closes: #529222)
+
+  [ Loic Minier ]
+  * copy_exec: also avoid picking sse2, neon, and vfp hwcaps libs.
+
+ -- maximilian attems <maks@debian.org>  Tue, 21 Apr 2009 15:05:40 +0200
+
+initramfs-tools (0.93.2) unstable; urgency=low
+
+  [ François Delawarde ]
+  * hook-functions: MODULES=dep fix for luks over cciss devices.
+    (closes: #517072, #522030)
+
+  [ maximilian attems ]
+  * hook-functions: stricter match on loaded module for firmware
+    warning.
+  * hook-functions: Add first firmware from $(uname -r) versioned
+    directories. (closes: #521370)
+  * hook-functions: MODULES=most add all fb modules per default.
+  * update-initramfs: Cleanup run_bootloader()
+  * update-initramfs: mbr_check() use /boot/grub/grub.cfg for grub2
+    search. (closes: #427509)
+  * update-initramfs: Run update on highest version instead of
+    /initrd.img link. (closes: #493863)
+  * hook-functions: MODULES=most fb add all available agp modules.
+  * update-initramfs: Fix error message on wrong -k version argument.
+  * hooks/thermal: Prevent inclusion of windfarm modules on PS3.
+  * mkinitramfs: Allow dots in boot and script filenames.
+
+  [ Maik Zumstrull ]
+  * init-top/framebuffer: Load intel-agp for intelfb.
+    (closes: #416063, #455876)
+
+ -- maximilian attems <maks@debian.org>  Thu, 02 Apr 2009 12:44:33 +0200
+
+initramfs-tools (0.93.1) unstable; urgency=low
+
+  [ maximilian attems ]
+  * init: export ip root param for configure_networking(). (closes: #516746)
+  * initramfs-tools.8: Document exported IP kernel parameter.
+  * initramfs-tools.preinst: Nuke initrd-tools related migration path.
+  * MODULES=dep: ide-disk got renamed to ide-gd_mod since 2.6.28.
+  * mkinitramfs: usage() fix conffile name.
+  * update copyright year of my contributions.
+  * control: conform to latest policy without changes.
+  * hook-functions: reword MODULES=dep error message.
+  * hook-functions: MODULES=dep fix for mmc root. (closes: #520198)
+  * debian/compat: Set debhelper compatibility version 5.
+
+  [ Matt Kraai ]
+  * mkinitramfs-kpkg misspells "deprecation" as "depreciation".
+    (closes: #517344)
+
+  [ Michael Vogt ]
+  * update-initramfs: set_linked_version() check if the links point to
+    an existing initrd.img.
+
+  [ Scott James Remnant ]
+  * mkinitramfs: include the modules.order file.
+
+  [ Ben Collins ]
+  * init-top/framebuffer: ignore blacklist for forced vga= usage.
+
+ -- maximilian attems <maks@debian.org>  Mon, 23 Mar 2009 07:55:16 +0100
+
+initramfs-tools (0.93) unstable; urgency=low
+
+  Release "Fischia il vento e infuria la bufera"
+
+  [ maximilian attems ]
+  * manpages: Set Linux as necessary OS.
+  * initramfs-tools.8: Fix path of debug log - now kept after boot.
+    (closes: #488804)
+  * mkinitramfs: Use cp with correct DESTDIR instead of copy_exec for configs.
+    Fixes relative pathes for -d option. (closes: #472409)
+  * initramfs-tools.8: Document default 180s rootdelay.
+  * update-initramfs: Fix run_bootloader() to check for grub2.
+    (closes: #511514)
+  * control: Add ${misc:Depends} depends.
+  * nuke old lvm hook scripts.
+  * mkinitramfs-kpkg: deprecate it's usage.
+  * hook-functions: just ship old iee1394 if around.
+  * mkinitramfs: Post-Lenny cleanup.
+  * udevhelper: nuke as need for partial upgrades between etch/lenny.
+  * mkinitramfs: Fix new pipe construct to really work inside
+    "${DESTDIR}".
+  * thermal boot script: Don't load thermal+fan on acpi=off. (closes: #514997)
+  * MODULES=dep fix for minor partitions > 9. (closes: #513958)
+  * initramfs-tools.8: Document mkinitramfs and init env variables.
+    (closes: #512453)
+  * init: Fix boot with LABEL containting one or several '/'. Thanks to
+    Andres Salomon <dilinger@debian.org> for testing. (closes: #489008)
+  * scripts/local-premount/resume: Fix resume with LABEL containing '/'.
+
+  [ e2xbegqsdyt21hfc ]
+  * update-initramfs.8: mentions the specific conf file.
+
+  [ Kel Modderman ]
+  * init: variable `break' unset before `maybe_break init' is evaluated.
+    (closes: #509637)
+
+  [ Kees Cook ]
+  * minitramfs: find/cpio exit codes ignored while building initramfs.
+    (closes: #514938)
+  * mkinitramfs: Do not pass exit code through on pipe failure.
+
+  [ Luke Yelavich ]
+  * hook-functions: Add hid_* modules, since some keyboards will not be
+    usable at the initramfs/busybox prompt without them. (closes: #515866)
+
+  [ Andres Salomon ]
+  * allow root=mtd0 to be used; skip root checks if ROOT doesn't start
+    with /dev. (closes: #497133)
+  * initramfs-tools: Readd support for linux-2.6 make deb-pkg target.
+    (closes: #504551)
+
+  [ Ian Campbell ]
+  * MODULES=dep fix for Xen virtual block devices.
+
+ -- maximilian attems <maks@debian.org>  Wed, 18 Feb 2009 19:10:23 +0100
+
 initramfs-tools (0.92o+vyatta+8) unstable; urgency=low
 
   * fix for squeeze dpkg
@@ -213,7 +749,7 @@ initramfs-tools (0.92d) unstable; urgency=low
       each message.
     - initramfs-tools.preinst: Try to use UUID for resume device.
     - add boot script loading ide-generic on all_generic_ide cmdline.
-      Thanks Frans Pop <elendil@planet.nl> for report. (closes: #485786) 
+      Thanks Frans Pop <elendil@planet.nl> for report. (closes: #485786)
   * init: add possible mountroot break (closes: #488963)
   * initramfs-tools.8: document UUID usage for root and all_generic_ide.
     (closes: #489186)
@@ -420,7 +956,7 @@ initramfs-tools (0.90) unstable; urgency=low
  -- maximilian attems <maks@debian.org>  Thu, 09 Aug 2007 21:30:29 +0200
 
 initramfs-tools (0.89) unstable; urgency=low
-  
+
   Release "L'\xE9lecteur c'est notoire N'a pas tout' sa raison"
 
   [ Joey Hess ]
