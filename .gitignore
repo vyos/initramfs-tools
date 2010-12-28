@@ -1,3 +1,4 @@
 debian/files
 debian/initramfs-tools.debhelper.log
+debian/initramfs-tools.substvars
 debian/initramfs-tools
