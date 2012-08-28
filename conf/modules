@@ -8,3 +8,5 @@
 #
 # raid1
 # sd_mod
+xen_blkfront
+hv_storvsc
