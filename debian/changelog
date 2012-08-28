@@ -1,3 +1,9 @@
+initramfs-tools (0.98.2+vyatta+5) unstable; urgency=low
+
+  * Fix xen and hyperv module loading on boot
+
+ -- John Southworth <john.southworth@vyatta.com>  Tue, 28 Aug 2012 13:33:52 -0700
+
 initramfs-tools (0.98.2+vyatta+4) unstable; urgency=low
 
   * new branch
