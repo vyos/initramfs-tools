@@ -1,3 +1,13 @@
+initramfs-tools (0.98.2+vyatta+6) unstable; urgency=low
+
+  * Better way to load xen modules, adapted from ubuntu's hw-detect
+    package
+  * Revert "Fix xen and hyperv module loading on boot"
+  * detect if /scripts/functions exists before sourcing it in xen
+    script. This fixes an error during the iso build process
+
+ -- John Southworth <john.southworth@vyatta.com>  Wed, 05 Sep 2012 12:58:32 -0700
+
 initramfs-tools (0.98.2+vyatta+5) unstable; urgency=low
 
   * Fix xen and hyperv module loading on boot
