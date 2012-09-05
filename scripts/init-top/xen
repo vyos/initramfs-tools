@@ -1,6 +1,8 @@
 #!/bin/sh
 
-. /scripts/functions
+if [ -f /scripts/functions ]; then
+  . /scripts/functions
+fi
 
 if [ "$(cat /sys/hypervisor/type 2>/dev/null || true)" = xen ] && \
    [ ! -d /sys/bus/xen ]; then
