@@ -1,3 +1,9 @@
+initramfs-tools (0.98.2+vyatta+8) unstable; urgency=low
+
+  * fix tags
+
+ -- John Southworth <john.southworth@vyatta.com>  Sat, 13 Oct 2012 13:38:27 -0700
+
 initramfs-tools (0.98.2+vyatta+7+daisy1) unstable; urgency=low
 
   * create daisy branch
