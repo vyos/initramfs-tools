@@ -1,3 +1,9 @@
+initramfs-tools (0.98.2+vyatta+6+pacifica1) unstable; urgency=low
+
+  * new branch
+
+ -- John Southworth <john.southworth@vyatta.com>  Fri, 12 Oct 2012 18:42:06 -0700
+
 initramfs-tools (0.98.2+vyatta+6) unstable; urgency=low
 
   * Better way to load xen modules, adapted from ubuntu's hw-detect
