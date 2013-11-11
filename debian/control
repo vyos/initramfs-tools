@@ -1,7 +1,7 @@
 Source: initramfs-tools
 Section: utils
 Priority: optional
-Maintainer: Vyatta Package Maintainers <maintainers@vyatta.com>
+Maintainer: VyOS maintainers <maintainers@vyos.net>
 Build-Depends: debhelper (>= 7.0)
 Standards-Version: 3.9.1
 Vcs-Browser: http://git.debian.org/?p=kernel/initramfs-tools.git
