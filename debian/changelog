@@ -1,3 +1,15 @@
+initramfs-tools (0.99.0+vyos2+lithium2) unstable; urgency=low
+
+  * Force release
+
+ -- Daniil Baturin <dmbaturin@squeeze32devel.multi.eu>  Sat, 25 Oct 2014 17:29:11 +0200
+
+initramfs-tools (0.99.0+vyos2+lithium1) unstable; urgency=low
+
+  * New branch
+
+ -- Daniil Baturin <daniil@baturin.org>  Sat, 25 Oct 2014 22:10:52 +0700
+
 initramfs-tools (0.99.0+vyos1+helium1) unstable; urgency=low
 
   * New branch
